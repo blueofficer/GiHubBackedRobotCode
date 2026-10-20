@@ -33,6 +33,10 @@ public class PassThrough {
         System.out.println("Robot Has Benn Set Up");
     }
 
+    public static void sendMessageToClient(String message) {
+        clientPrinter.print(message);
+    }
+
     public static void main(String[] args) throws IOException, InterruptedException {
         new StartConnectionClient().start();
         new StartConnectionRobot().start();
