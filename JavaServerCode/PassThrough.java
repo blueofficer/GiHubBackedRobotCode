@@ -23,13 +23,13 @@ public class PassThrough {
 
     public static void setUpClientConnection(Socket connection) throws IOException {
         clientReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        clientPrinter = new PrintWriter(connection.getOutputStream());
+        clientPrinter = new PrintWriter(connection.getOutputStream(),true);
         System.out.println("client has been set up");
     }
 
     public static void setUpRobotConnection(Socket connection) throws IOException {
         robotReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        robotPrinter = new PrintWriter(connection.getOutputStream());
+        robotPrinter = new PrintWriter(connection.getOutputStream(),true);
         System.out.println("Robot Has Benn Set Up");
     }
 
