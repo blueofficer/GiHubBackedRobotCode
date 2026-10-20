@@ -241,7 +241,7 @@ const char *ssid = "RobotWifi";
 const char *password = "RobotWifi";
 const char *deviceName = "JohnRobot";
 IPAddress serverIP(192, 168, 50, 1);
-constexpr uint16_t serverPort = 4444;
+constexpr uint16_t serverPort = 2222;
 
 // Command Buffer
 const int commandBuffSize = 10;
