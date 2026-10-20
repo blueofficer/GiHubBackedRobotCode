@@ -34,7 +34,7 @@ public class KeyBoardcontroller {
         String command = "";
 
         System.out.println(serverReader.readLine());
-
+//s
         JFrame frame = new JFrame("listiner");
 
         frame.setSize(400, 400);
