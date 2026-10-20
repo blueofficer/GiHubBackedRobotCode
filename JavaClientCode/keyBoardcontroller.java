@@ -33,7 +33,7 @@ public class KeyBoardcontroller {
 
         String command = "";
 
-        //System.out.println(serverReader.readLine());s
+        System.out.println(serverReader.readLine());
 
         JFrame frame = new JFrame("listiner");
 

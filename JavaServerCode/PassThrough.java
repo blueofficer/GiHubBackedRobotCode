@@ -34,7 +34,7 @@ public class PassThrough {
     }
 
     public static void sendMessageToClient(String message) {
-        clientPrinter.print(message);
+        clientPrinter.println(message);
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
