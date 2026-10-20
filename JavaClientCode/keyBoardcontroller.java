@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
@@ -23,9 +24,7 @@ public class KeyBoardcontroller {
 
     public static void main(String[] args) throws IOException {
 
-        ServerSocket server = new ServerSocket(4444);
-
-        Socket clientConnection = server.accept();
+        Socket clientConnection = new Socket("192.168.50.1", 4444);
 
         serverReader = new BufferedReader(new InputStreamReader(clientConnection.getInputStream()));
         serverWriter = new PrintWriter(clientConnection.getOutputStream(), true);
@@ -34,7 +33,7 @@ public class KeyBoardcontroller {
 
         String command = "";
 
-        System.out.println(serverReader.readLine());
+        //System.out.println(serverReader.readLine());s
 
         JFrame frame = new JFrame("listiner");
 

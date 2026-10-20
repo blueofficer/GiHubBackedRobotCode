@@ -47,7 +47,7 @@ public class PassThrough {
         while (true) {
             if (clientReader != null && robotReader != null) {
                 clientMesage = clientReader.readLine();
-                System.out.println(clientMesage);
+                System.out.println("Got this: " + clientMesage);
                 robotPrinter.println(clientMesage);
             }else{
                 System.out.println("Waiting for a connection");
