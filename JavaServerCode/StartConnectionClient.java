@@ -18,6 +18,7 @@ public class StartConnectionClient extends Thread{
         while (true) {
             try {
                 PassThrough.setUpClientConnection(clientConnection.accept());
+                PassThrough.sendMessageToClient("You are conneted!");
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
