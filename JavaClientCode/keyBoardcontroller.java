@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 /**
  * IsKeyPressed
  */
-public class keyBoardcontroller {
+public class KeyBoardcontroller {
 
     static BufferedReader serverReader = null;
     static PrintWriter serverWriter = null;
