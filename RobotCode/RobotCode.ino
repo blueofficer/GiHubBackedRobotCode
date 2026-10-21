@@ -1,6 +1,8 @@
 #include "Arduino.h"
 #include "esp32-hal.h"
 #include "music.h"
+#include <ESP32Servo.h>
+#include "myWifi.h"
 
 // THe ultrasonic sensore
 #define TRIG_PIN 13
@@ -35,24 +37,6 @@
 #define M4_Forward 1
 #define M4_Backward 8
 
-#include <ESP32Servo.h>
-
-// Wifi stuff
-#include <WiFi.h>
-const char *ssid = "RobotWifi";
-const char *password = "RobotWifi";
-const char *deviceName = "JohnRobot";
-IPAddress serverIP(192, 168, 50, 1);
-constexpr uint16_t serverPort = 2222;
-
-// Command Buffer
-const int commandBuffSize = 10;
-char commandBuff[commandBuffSize];
-
-// Reading and writing to the command buffer
-int currentPlaceRead = 0;
-int currentPlaceWrite = 0;
-
 // Auto rotate the servo
 bool rotateServo = false;
 int changeInAngle = 10;
@@ -66,36 +50,6 @@ long timeRobotOn = 0;
 boolean playingMusic = false;
 
 Servo myServo;
-WiFiClient client;
-
-void setUpWifi() {
-  WiFi.setHostname(deviceName);
-
-  WiFi.begin(ssid, password);
-  Serial.print("Connecting to Wi-Fi");
-
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-
-  Serial.println("\nConnected!");
-  Serial.print("Device name: ");
-  Serial.println(WiFi.getHostname());
-
-  Serial.print("IP Address: ");
-  Serial.println(WiFi.localIP());
-}
-
-void setUpServerConnection(IPAddress serverIP, uint16_t serverPort) {
-  Serial.println("\nAttempting to connect to TCP server...");
-
-  if (client.connect(serverIP, serverPort)) {
-    Serial.println("Connected to server!");
-  } else {
-    Serial.println("Failed to connect to server.");
-  }
-}
 
 void setUpServo() {
   pinMode(TRIG_PIN, OUTPUT);
@@ -119,7 +73,7 @@ void setup() {
   Serial.begin(115200);
   setUpServo();
   setUpWifi();
-  setUpServerConnection(serverIP, serverPort);
+  setUpServerConnection();
   setUpMotar();
   setUpMusic();
 
@@ -130,18 +84,11 @@ void setup() {
   turnServo(90);
 }
 
-void sendMessage(char *message) { client.println(message); }
+void doCommand(char* commandBuff) {
 
-void sendMessage(const String &message) { client.println(message); }
 
-void resetReadWriteBufferPlace() {
-  currentPlaceRead = 0;
-  currentPlaceWrite = 0;
-}
-
-void doCommand() {
   if (commandBuff[0] == 'D') {
-    Move();
+    Move(commandBuff);
   } else if (commandBuff[0] == 'S' && !rotateServo) {
     turnServo((int)commandBuff[1]);
     Serial.print("New Angle");
@@ -161,42 +108,7 @@ void doCommand() {
   }
 }
 
-int readNextByte() {
-  if (!client.connected()) {
-    return -1; // Connection lost
-  }
-
-  if (!client.available()) {
-    return 0; // No data yet
-  }
-
-  if (currentPlaceWrite >= commandBuffSize) {
-    resetReadWriteBufferPlace();
-    return -1; // Buffer overflow
-  }
-
-  char tempByte = client.read();
-  commandBuff[currentPlaceWrite++] = tempByte;
-
-  if (tempByte == '\n') {
-    return 1; // Complete command
-  }
-
-  return 0; // Keep reading
-}
-
-void Move() {
-  if (currentPlaceWrite != 6) { // makes sure the comamnd is the right size it
-                                // should look like (DFFFF'\n')
-    return;
-  }
-
-  Serial.print(commandBuff[1]); // prints the dir for error checking
-  Serial.print(commandBuff[2]);
-  Serial.print(commandBuff[3]);
-  Serial.print(commandBuff[4]);
-  Serial.print('\n');
-
+void Move(char* commandBuff) {
   int MotarVals = 0; //
 
   if (commandBuff[1] == 'F') {
@@ -261,7 +173,7 @@ void loop() {
   timeRobotOn = millis();
 
   if (replyCode == 1) {
-    doCommand();
+    doCommand(getCommandBufferPointer());
     resetReadWriteBufferPlace();
   } else if (replyCode == -1) {
     resetReadWriteBufferPlace();

@@ -11,6 +11,10 @@ char commandBuff[commandBuffSize];
 
 WiFiClient client;
 
+// Reading and writing to the command buffer
+int currentPlaceRead = 0;
+int currentPlaceWrite = 0;
+
 void setUpWifi() {
   WiFi.setHostname(deviceName);
 
@@ -71,4 +75,8 @@ int readNextByte() {
   }
 
   return 0; // Keep reading
+}
+
+char* getCommandBufferPointer(){
+  return commandBuff;
 }
