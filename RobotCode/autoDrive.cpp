@@ -29,18 +29,21 @@ void step1() {
 }
 
 void step2() {
-  setServoAngle(0);
+  setServoAngle(180);
   leftDistince = readDistance();
   currentStep++;
 }
 
 void step3() {
-  setServoAngle(180);
+  setServoAngle(0);
+  delay(20);
   rightDistince = readDistance();
   currentStep++;
 }
 
 void step4(long currentTime) {
+  setServoAngle(90);
+  delay(20);
   timeToStopMoving = currentTime + timeToStopMoving;
   if (rightDistince > leftDistince) {
     turnRight();
