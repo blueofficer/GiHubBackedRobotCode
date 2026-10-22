@@ -17,6 +17,7 @@
 #define M3_Backward 4
 #define M4_Forward 1
 #define M4_Backward 8
+#define M1M2M3M4_Stop 0
 
 void setUpMotar() {
   pinMode(SHCP_PIN, OUTPUT);
@@ -27,7 +28,7 @@ void setUpMotar() {
   pinMode(PWM2_PIN, OUTPUT);
 }
 
-void Move(char* commandBuff) {
+void Move(char *commandBuff) {
   int MotarVals = 0; //
 
   if (commandBuff[1] == 'F') {
@@ -60,5 +61,49 @@ void Move(char* commandBuff) {
 
   digitalWrite(STCP_PIN, LOW);
   shiftOut(DATA_PIN, SHCP_PIN, MSBFIRST, MotarVals);
+  digitalWrite(STCP_PIN, HIGH);
+}
+
+void setMotarsForword() {
+  int MotarVals = 0; //
+
+  MotarVals = M1_Forward + M2_Forward + M3_Forward + M4_Forward;
+
+  digitalWrite(EN_PIN, LOW);
+  analogWrite(PWM1_PIN, 255);
+  analogWrite(PWM2_PIN, 255);
+
+  digitalWrite(STCP_PIN, LOW);
+  shiftOut(DATA_PIN, SHCP_PIN, MSBFIRST, MotarVals);
+  digitalWrite(STCP_PIN, HIGH);
+}
+
+void stopMotars() {
+  digitalWrite(EN_PIN, LOW);
+  analogWrite(PWM1_PIN, 255);
+  analogWrite(PWM2_PIN, 255);
+
+  digitalWrite(STCP_PIN, LOW);
+  shiftOut(DATA_PIN, SHCP_PIN, MSBFIRST, M1M2M3M4_Stop);
+  digitalWrite(STCP_PIN, HIGH);
+}
+
+void turnLeft() {
+  digitalWrite(EN_PIN, LOW);
+  analogWrite(PWM1_PIN, 255);
+  analogWrite(PWM2_PIN, 255);
+
+  digitalWrite(STCP_PIN, LOW);
+  shiftOut(DATA_PIN, SHCP_PIN, MSBFIRST, M1_Forward + M3_Forward + M2_Backward + M4_Backward);
+  digitalWrite(STCP_PIN, HIGH);
+}
+
+void turnRight() {
+  digitalWrite(EN_PIN, LOW);
+  analogWrite(PWM1_PIN, 255);
+  analogWrite(PWM2_PIN, 255);
+
+  digitalWrite(STCP_PIN, LOW);
+  shiftOut(DATA_PIN, SHCP_PIN, MSBFIRST, M1_Backward + M2_Backward + M2_Forward + M4_Forward);
   digitalWrite(STCP_PIN, HIGH);
 }

@@ -5,6 +5,7 @@
 #include "motarContoller.h"
 #include "servoController.h"
 #include "sonic.h"
+#include "autoDrive.h"
 
 // inbuilt led pin
 #define LED_BUILTIN 2
@@ -18,7 +19,7 @@
 bool rotateServo = false;
 
 //Auto drive code
-bool autoDrive = false;
+bool autoDrive = true;
 
 // the current time in milisecnds
 long timeRobotOn = 0;
@@ -76,5 +77,9 @@ void loop() {
 
   if (playingMusic) {
     playNextNote(timeRobotOn);
+  }
+
+  if(autoDrive){
+    selectStep(timeRobotOn);
   }
 }
