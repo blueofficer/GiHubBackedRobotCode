@@ -1,0 +1,10 @@
+D: the next four bytes will be the motar directions 'F' will set it forword 'B' will set it to reverse all other will do nothing
+Example "DFFFF'\n'" will be going forword
+
+1: this enables the servo auto sweeping
+
+M: starts playing a song
+
+S: the next byte should be the angle
+
+A: turns on auto drive

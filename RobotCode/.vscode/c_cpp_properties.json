@@ -4,11 +4,10 @@
             "name": "esp32:esp32:esp32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/private/var/folders/l2/x7rvlx4505gcw2njhhkxtz9w0000gn/T/vs-arduino-sketch-TrwoPY/RobotCode",
+                "/private/var/folders/l2/x7rvlx4505gcw2njhhkxtz9w0000gn/T/vs-arduino-sketch-H4mGPs/RobotCode",
                 "/Users/dungeon/Library/Arduino15/packages/esp32/tools/esp32-libs/3.3.12/qio_qspi/include",
                 "/Users/dungeon/Library/Arduino15/packages/esp32/hardware/esp32/3.3.12/cores/esp32",
                 "/Users/dungeon/Library/Arduino15/packages/esp32/hardware/esp32/3.3.12/variants/esp32",
-                "/Users/dungeon/Documents/Arduino/libraries/ESP32Servo/src",
                 "/Users/dungeon/Library/Arduino15/packages/esp32/tools/esp-x32/2601/xtensa-esp32-elf/include"
             ],
             "forcedInclude": [
