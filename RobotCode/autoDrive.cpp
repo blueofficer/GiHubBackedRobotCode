@@ -23,7 +23,7 @@ void step0() {
 
 void step1() {
   if (readDistance() > headRoom) {
-    void setMotarsForword();
+    setMotarsForword();
   } else {
     currentStep++;
   }
