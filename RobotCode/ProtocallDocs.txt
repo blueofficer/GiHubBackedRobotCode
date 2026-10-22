@@ -7,4 +7,4 @@ M: starts playing a song
 
 S: the next byte should be the angle
 
-A: turns on auto drive
+3: turns on auto drive

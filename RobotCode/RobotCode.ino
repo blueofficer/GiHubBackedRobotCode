@@ -19,7 +19,7 @@
 bool rotateServo = false;
 
 //Auto drive code
-bool autoDrive = true;
+bool autoDrive = false;
 
 // the current time in milisecnds
 long timeRobotOn = 0;
@@ -52,8 +52,8 @@ void doCommand(char* commandBuff) {
     if (!playingMusic) {
       shutOfBuzzer();
     }
-  }else if(commandBuff[0] == 'A'){
-    //TODO: implment auto drive
+  }else if(commandBuff[0] == '3'){
+    autoDrive = !autoDrive;
   } else {
     Serial.print("Unknow command: " + commandBuff[0]);
   }
