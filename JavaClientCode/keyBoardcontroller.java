@@ -72,7 +72,7 @@ public class KeyBoardcontroller {
                         serverWriter.println("DFFFF");
                         break;
                     case KeyEvent.VK_3:
-                        serverWriter.println("DFFFF");
+                        serverWriter.println("3");
                         break;
                     case KeyEvent.VK_E:
                         if (servoAngle > 60) {
