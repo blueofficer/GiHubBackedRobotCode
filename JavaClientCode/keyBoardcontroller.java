@@ -29,12 +29,8 @@ public class KeyBoardcontroller {
         serverReader = new BufferedReader(new InputStreamReader(clientConnection.getInputStream()));
         serverWriter = new PrintWriter(clientConnection.getOutputStream(), true);
 
-        Scanner scan = new Scanner(System.in);
-
-        String command = "";
-
         System.out.println(serverReader.readLine());
-//s
+        // s
         JFrame frame = new JFrame("listiner");
 
         frame.setSize(400, 400);
@@ -73,6 +69,9 @@ public class KeyBoardcontroller {
                         serverWriter.println("DBBFF");
                         break;
                     case KeyEvent.VK_UP:
+                        serverWriter.println("DFFFF");
+                        break;
+                    case KeyEvent.VK_3:
                         serverWriter.println("DFFFF");
                         break;
                     case KeyEvent.VK_E:
