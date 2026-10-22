@@ -11,7 +11,7 @@ float leftDistince = 0;
 
 float rightDistince = 0;
 
-int turnTime = 200; //I mili secneds 1000 mill to 1 secend
+int turnTime = 2000; //I mili secneds 1000 mill to 1 secend
 
 long timeToStopMoving = 0; // how long the robot should turn for
 
