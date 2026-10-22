@@ -94,7 +94,7 @@ void turnLeft() {
   analogWrite(PWM2_PIN, 255);
 
   digitalWrite(STCP_PIN, LOW);
-  shiftOut(DATA_PIN, SHCP_PIN, MSBFIRST, M1_Forward + M3_Forward + M2_Backward + M4_Backward);
+  shiftOut(DATA_PIN, SHCP_PIN, MSBFIRST, M1_Forward + M2_Forward + M3_Backward + M4_Backward);
   digitalWrite(STCP_PIN, HIGH);
 }
 
@@ -104,6 +104,6 @@ void turnRight() {
   analogWrite(PWM2_PIN, 255);
 
   digitalWrite(STCP_PIN, LOW);
-  shiftOut(DATA_PIN, SHCP_PIN, MSBFIRST, M1_Backward + M3_Backward + M2_Forward + M4_Forward);
+  shiftOut(DATA_PIN, SHCP_PIN, MSBFIRST, M1_Backward + M2_Backward + M3_Forward + M4_Forward);
   digitalWrite(STCP_PIN, HIGH);
 }
