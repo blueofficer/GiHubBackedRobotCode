@@ -37,7 +37,7 @@ void step2() {
 
 void step3() {
   setServoAngle(0);
-  delay(200);
+  delay(400);
   rightDistince = readDistance();
   currentStep++;
 }
