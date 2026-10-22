@@ -1,3 +1,4 @@
 git pull
-javac keyBoardcontroller.java
-java keyBoardcontroller
+cp keyBoardcontroller.java KeyBoardController.java 
+javac KeyBoardController.java
+java KeyBoardController
