@@ -11,8 +11,7 @@ float leftDistince = 0;
 
 float rightDistince = 0;
 
-float timeToStopMoving =
-    2; // how long the robot should turn for to go 90 degress
+long timeToStopMoving = 2; // how long the robot should turn for
 
 void resetCurrentStep() { currentStep = 0; }
 
@@ -42,13 +41,14 @@ void step3() {
 }
 
 void step4(long currentTime) {
+  timeToStopMoving = currentTime + timeToStopMoving;
   if (rightDistince > leftDistince) {
     turnRight();
   } else {
     turnLeft();
   }
 
-  timeToStopMoving = currentTime + timeToStopMoving;
+  currentStep++;
 }
 
 void step5(long currentTime) {
