@@ -11,7 +11,9 @@ float leftDistince = 0;
 
 float rightDistince = 0;
 
-long timeToStopMoving = 2; // how long the robot should turn for
+int turnTime = 2; //I mili secneds
+
+long timeToStopMoving = 0; // how long the robot should turn for
 
 void resetCurrentStep() { currentStep = 0; }
 
@@ -44,7 +46,7 @@ void step3() {
 
 void step4(long currentTime) {
   setServoAngle(90);
-  timeToStopMoving = currentTime + timeToStopMoving;
+  timeToStopMoving = currentTime + turnTime;
   if (rightDistince > leftDistince) {
     turnRight();
   } else {
