@@ -30,6 +30,7 @@ void step1() {
 
 void step2() {
   setServoAngle(180);
+  delay(200);
   leftDistince = readDistance();
   currentStep++;
 }
@@ -43,7 +44,6 @@ void step3() {
 
 void step4(long currentTime) {
   setServoAngle(90);
-  delay(200);
   timeToStopMoving = currentTime + timeToStopMoving;
   if (rightDistince > leftDistince) {
     turnRight();
