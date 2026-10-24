@@ -20,7 +20,11 @@ public class KeyBoardController {
     static BufferedReader serverReader = null;
     static PrintWriter serverWriter = null;
 
-    static int servoAngle = 90;
+    static int handAngle = 90;
+    static int wristAngle = 90;
+    static int elbowAngle = 90;
+    static int shoulderUpAngle = 90;
+    static int shoulderSideAngle = 90;
 
     public static void main(String[] args) throws IOException {
 
@@ -75,26 +79,20 @@ public class KeyBoardController {
                         serverWriter.println("3");
                         break;
                     case KeyEvent.VK_E:
-                        if (servoAngle > 60) {
-                            servoAngle -= 10;
-                            serverWriter.println("S" + (char) servoAngle);
+                        if (shoulderSideAngle <= 180) {
+                            shoulderSideAngle += 10;
                         }
                         break;
                     case KeyEvent.VK_Q:
-                        if (servoAngle < 120) {
-                            servoAngle += 10;
-                            serverWriter.println("S" + (char) servoAngle);
+                        if (shoulderSideAngle >= 0) {
+                            shoulderSideAngle -= 10;
                         }
-                        break;
-                    case KeyEvent.VK_2:
-                        servoAngle = 90;
-                        serverWriter.println("S" + (char) servoAngle);
                         break;
                     case KeyEvent.VK_1:
                         serverWriter.println("1");
                         break;
                     case KeyEvent.VK_M:
-                        serverWriter.println("M"); // TODO: add the ablyty to switch music tracs music
+                        serverWriter.println("M");
                         break;
 
                     default:
@@ -129,5 +127,15 @@ public class KeyBoardController {
         });
 
         frame.setVisible(true);
+    }
+
+    public void sendArmCommand(PrintWriter serverWriter) {
+        serverWriter.print("S");
+        serverWriter.print((char) handAngle);
+        serverWriter.print((char) wristAngle);
+        serverWriter.print((char) elbowAngle);
+        serverWriter.print((char) shoulderUpAngle);
+        serverWriter.print((char) shoulderSideAngle);
+        serverWriter.print('\n');
     }
 }

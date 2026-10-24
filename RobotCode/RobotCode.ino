@@ -1,11 +1,11 @@
 #include "Arduino.h"
+#include "ArmController.h"
+#include "autoDrive.h"
 #include "esp32-hal.h"
+#include "motarContoller.h"
 #include "music.h"
 #include "myWifi.h"
-#include "motarContoller.h"
-#include "servoController.h"
 #include "sonic.h"
-#include "autoDrive.h"
 
 // inbuilt led pin
 #define LED_BUILTIN 2
@@ -15,10 +15,7 @@
 #define Center_Line 36
 #define Right_Line 39
 
-// Auto rotate the servo
-bool rotateServo = false;
-
-//Auto drive code
+// Auto drive code
 bool autoDrive = false;
 
 // the current time in milisecnds
@@ -28,7 +25,7 @@ boolean playingMusic = false;
 
 void setup() {
   Serial.begin(115200);
-  setUpServo();
+  setupArmController();
   setUpWifi();
   setUpServerConnection();
   setUpMotar();
@@ -36,23 +33,28 @@ void setup() {
   setUpSonicSensor();
   sendMessage("Hello from ESP32 over TCP!");
   pinMode(LED_BUILTIN, OUTPUT); // built in light
-  setServoAngle(90);
 }
 
-void doCommand(char* commandBuff) {
+void doCommand(char *commandBuff) {
   if (commandBuff[0] == 'D') {
-    autoDrive = false; //auto drive should turn off if it gets 
+    autoDrive = false; // auto drive should turn off if it gets
     Move(commandBuff);
-  } else if (commandBuff[0] == 'S' && !rotateServo) {
-    setServoAngle((int)commandBuff[1]);
-  } else if (commandBuff[0] == '1') {
-    rotateServo = !rotateServo;
+  } else if (commandBuff[0] == 'S') {
+    unsigned int handAngle = ((unsigned int)commandBuff[1]);
+    unsigned int wristAngle = ((unsigned int)commandBuff[2]);
+    unsigned int elbowAngle = ((unsigned int)commandBuff[3]);
+    unsigned int shoulderUpAngle = ((unsigned int)commandBuff[4]);
+    unsigned int shoulderSideAngle = ((unsigned int)commandBuff[5]);
+
+    setArmAngles(handAngle, wristAngle, elbowAngle, shoulderUpAngle,
+                 shoulderSideAngle);
+
   } else if (commandBuff[0] == 'M') {
     playingMusic = !playingMusic;
     if (!playingMusic) {
       shutOfBuzzer();
     }
-  }else if(commandBuff[0] == '3'){
+  } else if (commandBuff[0] == '3') {
     autoDrive = !autoDrive;
   } else {
     Serial.print("Unknow command: " + commandBuff[0]);
@@ -71,15 +73,12 @@ void loop() {
     resetReadWriteBufferPlace();
   }
 
-  if (rotateServo) {
-    autoRotateServo(timeRobotOn);
-  }
-
   if (playingMusic) {
     playNextNote(timeRobotOn);
   }
 
-  if(autoDrive){
-    selectStep(timeRobotOn);
-  }
+  // if (autoDrive) {
+  //   selectStep(timeRobotOn);
+  // }
+  // Disabling this untill auto drive is lokey fixed
 }

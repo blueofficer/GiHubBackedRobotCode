@@ -4,14 +4,14 @@
             "name": "esp32:esp32:esp32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/private/var/folders/l2/x7rvlx4505gcw2njhhkxtz9w0000gn/T/vs-arduino-sketch-GfczZK/RobotCode",
-                "/Users/dungeon/Library/Arduino15/packages/esp32/tools/esp32-libs/3.3.12/qio_qspi/include",
-                "/Users/dungeon/Library/Arduino15/packages/esp32/hardware/esp32/3.3.12/cores/esp32",
-                "/Users/dungeon/Library/Arduino15/packages/esp32/hardware/esp32/3.3.12/variants/esp32",
-                "/Users/dungeon/Library/Arduino15/packages/esp32/tools/esp-x32/2601/xtensa-esp32-elf/include"
+                "/tmp/vs-arduino-sketch-WuzAcZ/RobotCode",
+                "/home/eldric/.arduino15/packages/esp32/tools/esp32-libs/3.3.12/qio_qspi/include",
+                "/home/eldric/.arduino15/packages/esp32/hardware/esp32/3.3.12/cores/esp32",
+                "/home/eldric/.arduino15/packages/esp32/hardware/esp32/3.3.12/variants/esp32",
+                "/home/eldric/.arduino15/packages/esp32/tools/esp-x32/2601/xtensa-esp32-elf/include"
             ],
             "forcedInclude": [
-                "/Users/dungeon/Library/Arduino15/packages/esp32/hardware/esp32/3.3.12/cores/esp32/Arduino.h"
+                "/home/eldric/.arduino15/packages/esp32/hardware/esp32/3.3.12/cores/esp32/Arduino.h"
             ],
             "defines": [
                 "F_CPU=240000000L",
@@ -21,7 +21,7 @@
                 "ARDUINO_BOARD=\"ESP32_DEV\"",
                 "ARDUINO_VARIANT=\"esp32\"",
                 "ARDUINO_PARTITION_default",
-                "ARDUINO_HOST_OS=\"macosx\"",
+                "ARDUINO_HOST_OS=\"linux\"",
                 "ARDUINO_FQBN=\"esp32:esp32:esp32\"",
                 "ESP32=ESP32",
                 "CORE_DEBUG_LEVEL=0",
@@ -29,7 +29,7 @@
                 "ARDUINO_EVENT_RUNNING_CORE=1",
                 "ARDUINO_USB_CDC_ON_BOOT=0"
             ],
-            "compilerPath": "/Users/dungeon/Library/Arduino15/packages/esp32/tools/esp-x32/2601/bin/xtensa-esp32-elf-g++",
+            "compilerPath": "/home/eldric/.arduino15/packages/esp32/tools/esp-x32/2601/bin/xtensa-esp32-elf-g++",
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "gcc-x64"

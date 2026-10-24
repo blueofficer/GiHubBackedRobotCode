@@ -13,7 +13,7 @@ Servo myServo;
 
 void setUpServo() {
   myServo.attach(25);
-  Serial.println("Servo and ultrasonic sensor ready!");
+  Serial.println("Servo ready!");
 }
 
 void setServoAngle(int angle) {

@@ -3,6 +3,8 @@
 #include "servoController.h"
 #include "sonic.h"
 
+
+//TODO: need to change this code to acount for the ultra sonic servo is no longer on a servo
 float headRoom = 10.0; // Head room the
 
 int currentStep = 0;
